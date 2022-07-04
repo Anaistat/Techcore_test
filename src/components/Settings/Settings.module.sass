@@ -1,7 +1,8 @@
 .settings
   width: 240px
   height: 100%
-  background-color: #F5F9FE
+  position: relative
+  background-color: var(--background-blue)
   border-right: 1px solid rgba(46, 91, 255, 0.1)
   box-sizing: border-box
   padding: 21px 0 0 24px
@@ -13,28 +14,31 @@
   &__subitems
     display: flex
     flex-direction: column
-    margin: 16px 0 0 20px
+    margin: 18px 0 0 32px
 
-  p
-    color: #AFB6C6
-    font-size: 16px
-    font-weight: 600
-    margin: 0
-
-  span
+  &__text
+    color: var(--text-color-100)
     font-size: 14px
+    font-weight: var(--font-medium)
     margin-left: 12px
-    color: #1E212A
 
-  .active-text
-    color: #00A0EC
+    &--active
+      color: var(--main-color-100) !important
 
-  .subitems-text
+  h2
+    color: var(--text-color-grey2)
+    font-size: 16px
+    font-weight: var(--font-semi-bold)
+    margin: 0
+    padding: 0
+
+  .text
+    color: var(--text-color-100)
     font-size: 13px
     margin-bottom: 15px
 
-    &:last-child
-      color: #00A0EC
+    &--active
+      color: var(--main-color-100)
 
   .arrow
     display: flex
@@ -42,9 +46,10 @@
     align-items: center
     width: 24px
     height: 24px
+    box-sizing: border-box
     border: 0.7px solid #DFE5F9
     border-radius: 50%
     background: #FFFFFF
     position: absolute
     top: 78px
-    left: 328px
+    right: -12px

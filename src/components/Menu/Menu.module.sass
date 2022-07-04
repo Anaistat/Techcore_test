@@ -5,7 +5,7 @@ button
 .menu
   width: 100px
   height: 100%
-  background-color: #F5F9FE
+  background-color: var(--background-blue)
   display: flex
   flex-direction: column
   align-items: center
@@ -14,10 +14,25 @@ button
   border-right: 1px solid rgba(46, 91, 255, 0.1)
 
   &__pages
-    margin: 56px 0 130px
+    margin: 53px 0 126px 0
+    list-style: none
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 0
 
-    button
-      margin-bottom: 34px
+    li
+      margin-bottom: 40px
+
+  &__text
+    color: var(--text-color-grey2)
+    font-size: 12px
+    font-weight: var(--font-semi-bold)
+    margin: 3px 0 0 0
+
+    &--active
+      color: var(--main-color-100)
+
 
   &__user
     display: flex
@@ -26,3 +41,13 @@ button
 
 .notification
   margin-bottom: 18px
+  position: relative
+
+  &__circle
+    width: 5px
+    height: 5px
+    position: absolute
+    background-color: var(--main-color-100)
+    border-radius: 50%
+    top: 0
+    right: 2px

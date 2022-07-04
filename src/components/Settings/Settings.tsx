@@ -7,20 +7,20 @@ import arrow from './images/Arrow.png'
 const Settings = () => {
     return (
         <div className={style.settings}>
-            <p>Settings</p>
+            <h2>Settings</h2>
             <div>
                 <div className={style['settings__item']}>
                     <img src={settingGeneral} alt="setting-general" width='20' height='20'/>
-                    <span>General</span>
+                    <span className={style['settings__text']}>General</span>
                 </div>
                 <div className={style['settings__item']}>
                     <img src={vacationManager} alt="setting-general" width='20' height='20'/>
-                    <span className={style['active-text']}>Vacation Manager</span>
+                    <span className={[style['settings__text'], style['settings__text--active']].join(' ')}>Vacation Manager</span>
                 </div>
             </div>
             <div className={style['settings__subitems']}>
-                <span className={style['subitems-text']}>Leave Types</span>
-                <span className={style['subitems-text']}>Locations</span>
+                <span className={style['text']}>Leave Types</span>
+                <span className={[style['text'], style['text--active']].join(' ')}>Locations</span>
             </div>
             <div className={style.arrow}>
                 <img src={arrow} alt="arrow" width='12px' height='10px'/>
