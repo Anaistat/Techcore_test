@@ -1,0 +1,44 @@
+.button-ui
+  color: #FFFFFF
+  font-weight: var(--font-semi-bold)
+  padding: 12px 24px
+  border-radius: 6px
+  cursor: pointer
+
+.blue
+  background-color: var(--main-color-100)
+  transition: background-color 0.3s ease-out
+
+  &:hover
+    background-color: var(--main-color-dark)
+    transition: background-color 0.3s ease-out
+
+  &:disabled
+    background-color: var(--main-color-70)
+
+.grey
+  background-color: var(--text-color-grey2)
+  transition: background-color 0.3s ease-out
+
+  &:hover
+    background-color: rgba(175, 182, 198, 0.7)
+    transition: background-color 0.3s ease-out
+
+  &:disabled
+    background-color: var(--text-color-grey2-60)
+
+.outline-red
+  background-color: transparent
+  color: var(--button-red)
+  outline: 1px solid var(--button-red)
+  transition: background-color 0.3s ease-out
+
+  &:hover
+    background-color: var(--button-red)
+    color: #FFFFFF
+    transition: background-color 0.3s ease-out
+
+  &:disabled
+    color: var(--button-red-disabled)
+    outline: 1px solid var(--button-red-disabled)
+

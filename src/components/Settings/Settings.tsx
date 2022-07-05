@@ -18,10 +18,14 @@ const Settings = () => {
                     <span className={[style['settings__text'], style['settings__text--active']].join(' ')}>Vacation Manager</span>
                 </div>
             </div>
-            <div className={style['settings__subitems']}>
-                <span className={style['text']}>Leave Types</span>
-                <span className={[style['text'], style['text--active']].join(' ')}>Locations</span>
-            </div>
+            <ul className={style['settings__subitems']}>
+                <li>
+                    <span className={style['text']}>Leave Types</span>
+                </li>
+                <li className={style['cell--active']}>
+                    <span className={[style['text'], style['text--active']].join(' ')}>Locations</span>
+                </li>
+            </ul>
             <div className={style.arrow}>
                 <img src={arrow} alt="arrow" width='12px' height='10px'/>
             </div>

@@ -36,6 +36,11 @@ body {
   --font-medium: 500;
   --font-regular: 400;
 
+  --button-red: #F24445;
+  --button-red-disabled: rgba(242, 68, 69, 0.7);
+
+  --main-shadow: 0px 8px 28px rgba(0, 44, 175, 0.05);
+  --card-border: rgba(175, 182, 198, 0.4);
 
 }
 

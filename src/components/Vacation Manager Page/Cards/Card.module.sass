@@ -1,0 +1,75 @@
+.card
+  width: 304px
+  height: 173px
+  box-sizing: border-box
+  padding: 20px
+  border: 0.7px solid var(--card-border)
+  box-shadow: var(--main-shadow)
+  border-radius: 6px
+
+  &__title
+    display: flex
+    align-items: center
+
+  &__info
+    margin-top: 22px
+    display: flex
+
+  &__left
+    margin-right: 16px
+
+  .info-text
+    font-size: 13px
+    font-weight: var(--font-medium)
+    color: var(--text-color-100)
+    margin: 0 0 5px 0
+
+    &--active
+      color: var(--main-color-100)
+      cursor: pointer
+      transition: text-decoration 0.3s ease-out
+
+      &:hover
+        text-decoration: underline
+        transition: text-decoration 0.3s ease-out
+
+  &__customers
+    display: flex
+    align-items: center
+    margin-top: 8px
+
+  .country
+    margin: 0
+    font-size: 15px
+    cursor: pointer
+    font-weight: var(--font-semi-bold)
+    color: var(--text-color-100)
+    transition: color 0.3s ease-out
+
+    &:hover
+      color: var(--main-color-100)
+      transition: color 0.3s ease-out
+
+  .default-card
+    width: 72px
+    height: 20px
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: var(--main-color-100)
+    border-radius: 20px
+    margin-left: 8px
+
+    &__text
+      color: #FFFFFF
+      font-size: 12px
+      font-weight: var(--font-semi-bold)
+
+.customer-profile
+  margin-right: 4px
+
+.customers-count
+  font-size: 14px
+  margin-left: 4px
+  font-weight: var(--font-semi-bold)
+  color: var(--main-color-100)
