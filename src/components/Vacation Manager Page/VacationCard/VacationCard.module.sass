@@ -1,8 +1,9 @@
 .card
+  position: relative
   width: 304px
   height: 173px
   box-sizing: border-box
-  padding: 20px
+  padding: 20px 10px 20px 20px
   border: 0.7px solid var(--card-border)
   box-shadow: var(--main-shadow)
   border-radius: 6px
@@ -60,10 +61,39 @@
     border-radius: 20px
     margin-left: 8px
 
+    &--disable
+      display: none
+
     &__text
       color: #FFFFFF
       font-size: 12px
       font-weight: var(--font-semi-bold)
+
+.more
+  list-style: none
+  padding: 6px 10px
+  margin: -12px 0 0 auto
+  cursor: pointer
+  border-radius: 6px
+  transition: background-color 0.3s ease-out
+
+  &:hover
+    background-color: var(--main-color-10)
+    transition: background-color 0.3s ease-out
+
+  &__dot
+    width: 3px
+    height: 3px
+    border-radius: 50%
+    background-color: var(--text-color-grey2)
+    transition: background-color 0.3s ease-out
+
+    &:hover
+      background-color: var(--main-color-100)
+      transition: background-color 0.3s ease-out
+
+    &--middle
+      margin: 2px 0
 
 .customer-profile
   margin-right: 4px

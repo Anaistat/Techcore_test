@@ -1,19 +1,34 @@
-import React, {FC} from 'react';
-import style from './Card.module.sass'
+import React, {FC, useState} from 'react';
+import style from './VacationCard.module.sass'
+import More from "../More/More";
 
 interface CardProps{
     country: string
     users: string[]
+    defaultCard: boolean
 }
 
-const Card:FC<CardProps> = ({country, users}) => {
+const VacationCard:FC<CardProps> = ({country, users, defaultCard}) => {
+
+    const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false)
+    const openCloseMore = (e: any) =>{
+        e.stopPropagation()
+        setIsMoreOpen(prev=>!prev)
+    }
+
     return (
         <div className={style.card}>
             <div className={style['card__title']}>
                  <h2 className={style.country}>{country}</h2>
-                <div className={style['default-card']}>
+                <div className={`${defaultCard?style['default-card']:style['default-card--disable']}`}>
                     <span className={style['default-card__text']}>default</span>
                 </div>
+                <ul className={style.more} onClick={e=>openCloseMore(e)}>
+                    <li className={style['more__dot']}/>
+                    <li className={[style['more__dot'], style['more__dot--middle']].join(' ')}/>
+                    <li className={style['more__dot']}/>
+                </ul>
+                <More open={isMoreOpen}/>
             </div>
             <div className={style['card__info']}>
                 <div className={style['card__left']}>
@@ -42,4 +57,4 @@ const Card:FC<CardProps> = ({country, users}) => {
     );
 };
 
-export default Card;
+export default VacationCard;
