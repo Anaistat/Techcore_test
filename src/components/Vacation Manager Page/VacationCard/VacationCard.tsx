@@ -11,10 +11,6 @@ interface CardProps{
 const VacationCard:FC<CardProps> = ({country, users, defaultCard}) => {
 
     const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false)
-    const openCloseMore = (e: any) =>{
-        e.stopPropagation()
-        setIsMoreOpen(prev=>!prev)
-    }
 
     return (
         <div className={style.card}>
@@ -23,12 +19,12 @@ const VacationCard:FC<CardProps> = ({country, users, defaultCard}) => {
                 <div className={`${defaultCard?style['default-card']:style['default-card--disable']}`}>
                     <span className={style['default-card__text']}>default</span>
                 </div>
-                <ul className={style.more} onClick={e=>openCloseMore(e)}>
+                <ul className={style.more} onClick={()=>setIsMoreOpen(prev=>!prev)}>
                     <li className={style['more__dot']}/>
                     <li className={[style['more__dot'], style['more__dot--middle']].join(' ')}/>
                     <li className={style['more__dot']}/>
                 </ul>
-                <More open={isMoreOpen}/>
+                <More open={isMoreOpen} country={country} setIsOpen={setIsMoreOpen}/>
             </div>
             <div className={style['card__info']}>
                 <div className={style['card__left']}>
