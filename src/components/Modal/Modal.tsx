@@ -1,18 +1,11 @@
 import React, {FC, ReactNode} from 'react';
 import style from './Modal.module.sass'
-import button from "../../ui/Button/Button";
-import Button from "../../ui/Button/Button";
 
-type ButtonsModal = {
-    text: string,
-    disabled: boolean,
-    color: 'blue' | 'grey' | 'red-outline'
-}
 
 interface ModalProps{
     title: string
     children: JSX.Element | ReactNode | JSX.Element[] | ReactNode[]
-    buttons: []
+    buttons: JSX.Element[]
     setVisible: (visible: boolean) => void
 }
 
@@ -26,9 +19,9 @@ const Modal:FC<ModalProps> = ({children, buttons, title, setVisible}) => {
                 <div className={style['modal__content']}>
                     {children}
                 </div>
-                <div className={'modal__buttons'}>
+                <div className={style['modal__buttons']}>
                     {
-                        buttons.map((e)=><Button text={e.text} disabled={e.disabled} color={e.color}/>)
+                        buttons
                     }
                 </div>
             </div>

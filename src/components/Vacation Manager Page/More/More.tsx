@@ -5,6 +5,7 @@ import defaultCard from './images/default.png'
 import deleteCard from './images/delete.png'
 import Modal from "../../Modal/Modal";
 import warning from './images/warning.png'
+import Button from "../../../ui/Button/Button";
 
 interface MoreProps{
     open: boolean
@@ -15,6 +16,7 @@ interface MoreProps{
 const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
 
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
+    const buttons = [<Button text='Yes, Delete' color='red-outline'/>]
 
     return (
         <div className={style.more} style={{
@@ -38,7 +40,7 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
             </ul>
             {
                 isDeleteModal?
-                    <Modal title='Delete Location' buttons={[]} setVisible={setIsDeleteModal}>
+                    <Modal title='Delete Location' buttons={buttons} setVisible={setIsDeleteModal}>
                         <p className={style['warn-text']}>Are you sure uou want to delete {`"${country}"`} Location?</p>
                         <div className={style['warn-info']}>
                             <img src={warning} alt="warning" width='16' height='16'/>
