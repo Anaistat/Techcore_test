@@ -1,0 +1,61 @@
+.label-checkbox
+  user-select: none
+  cursor: pointer
+  margin-bottom: 0
+  display: flex
+  align-items: center
+  .invisible-input:checked
+    & + .checkbox
+      border-color: var(--main-color-100)
+      svg
+        path
+          fill: var(--main-color-10)
+        polyline
+          stroke-dashoffset: 0
+
+  .checkbox
+    position: relative
+    top: 2px
+    margin-right: 8px
+    width: 16px
+    height: 16px
+    border: 1px solid var(--text-color-grey2)
+    border-radius: 3px
+    svg
+      position: absolute
+      top: -2px
+      left: -2px
+      path
+        fill: none
+        stroke: #20C2E0
+        stroke-width: 2
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 71px
+        stroke-dashoffset: 71px
+        transition: all .6s ease
+      polyline
+        fill: none
+        stroke: var(--main-color-100)
+        stroke-width: 2
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 18px
+        stroke-dashoffset: 18px
+        transition: all .3s ease
+
+  > .check-text
+    pointer-events: none
+    vertical-align: middle
+    font-size: 13px
+    font-weight: var(--font-regular)
+    color: var(--text-color-100)
+    margin-top: 5px
+
+
+.invisible-input
+  position: absolute
+  z-index: -1
+  width: 0
+  height: 0
+  opacity: 0

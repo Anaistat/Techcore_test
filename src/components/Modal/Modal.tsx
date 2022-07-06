@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import style from './Modal.module.sass'
-
+import close from './images/close.png'
 
 interface ModalProps{
     title: string
@@ -15,6 +15,7 @@ const Modal:FC<ModalProps> = ({children, buttons, title, setVisible}) => {
             <div className={style.modal}>
                 <div className={style['modal__header']}>
                     <h1 className={style.title}>{title}</h1>
+                    <img src={close} alt="close" width='16' height='16' className={style.close} onClick={()=>setVisible(false)}/>
                 </div>
                 <div className={style['modal__content']}>
                     {children}

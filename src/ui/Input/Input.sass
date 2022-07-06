@@ -1,0 +1,55 @@
+.form__group
+  position: relative
+  width: 100%
+  box-sizing: border-box
+
+.form__field
+  font-family: inherit
+  width: 100%
+  border: 0
+  outline: 0.7px solid var(--text-color-grey2)
+  border-radius: 4px
+  font-size: 13px
+  font-weight: var(--font-regular)
+  color: var(--text-color-100)
+  padding: 10px 0
+  background: transparent
+  transition: border-color 0.2s
+
+  &::placeholder
+    color: transparent
+
+
+  &:placeholder-shown ~ .form__label
+    font-size: 13px
+    font-weight: var(--font-regular)
+    color: var(--text-color-grey2)
+    cursor: text
+    top: 10px
+    left: 16px
+
+.form__label
+  position: absolute
+  top: 0
+  display: block
+  transition: 0.2s
+  font-size: 13px
+  color: var(--text-color-grey2)
+
+.form__field:focus
+  ~ .form__label
+    position: absolute
+    top: -9px
+    left: 16px
+    background-color: #FFFFFF
+    display: block
+    transition: 0.2s
+    font-size: 11px
+    font-weight: var(--font-semi-bold)
+    color: var(--text-color-100)
+
+
+/* reset input */
+.form__field
+  &:required,&:invalid
+    box-shadow: none
