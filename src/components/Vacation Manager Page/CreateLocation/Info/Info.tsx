@@ -19,9 +19,6 @@ const Info:FC<InfoProps> = ({text}) => {
             }}>
                 <p className={style['info__text']}>{text}</p>
             </div>
-            <div className={style['arrow-up']} style={{
-                display: showText?'block':'none'
-            }}/>
         </div>
     );
 };

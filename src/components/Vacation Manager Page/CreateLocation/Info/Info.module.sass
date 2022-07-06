@@ -24,18 +24,20 @@
   top: -110px
   left: -20px
 
+  &::after
+    content: ''
+    position: absolute
+    left: 6%
+    top: 100%
+    width: 0
+    height: 0
+    border-left: 10px solid transparent
+    border-right: 10px solid transparent
+    border-top: 10px solid var(--text-color-80)
+    clear: both
+
   &__text
     margin: 0
     font-size: 11px
     font-weight: var(--font-regular)
     color: #FFFFFF
-
-.arrow-up
-  width: 0
-  height: 0
-  border-left: 10px solid transparent
-  border-right: 10px solid transparent
-  border-top: 10px solid var(--text-color-80)
-  position: absolute
-  top: -12px
-  left: -4px
