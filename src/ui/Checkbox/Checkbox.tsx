@@ -3,13 +3,15 @@ import './Checkbox.sass'
 
 interface CheckBoxProp{
     label?: string
+    name?: string
+    boldFont?: boolean
 }
 
-const Checkbox:FC<CheckBoxProp> = ({label}) => {
+const Checkbox:FC<CheckBoxProp> = ({label, name, boldFont = false}) => {
     return (
         <>
-            <label htmlFor="checkbox" className="label-checkbox">
-                <input id="checkbox" type="checkbox" className="invisible-input"/>
+            <label htmlFor={name} className="label-checkbox">
+                <input id={name} type="checkbox" name={name} className="invisible-input"/>
                     <div className="checkbox">
                         <svg width="20px" height="20px" viewBox="0 0 20 20">
                             <path
@@ -17,7 +19,7 @@ const Checkbox:FC<CheckBoxProp> = ({label}) => {
                             <polyline points="4 11 8 15 16 6"></polyline>
                         </svg>
                     </div>
-                    <span className='check-text'>{label}</span>
+                    <span className={`${!boldFont?'check-text':'check-text--bold'}`}>{label}</span>
             </label>
         </>
     );

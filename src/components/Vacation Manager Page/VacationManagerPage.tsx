@@ -15,7 +15,7 @@ const VacationManagerPage = () => {
     const users1 = [profile1, profile2, profile3, profile2, profile3]
     const users2 = [profile1, profile2, profile3, profile2, profile3, profile3, profile2]
 
-    const buttons = [<Button text='Cansel' color='grey'/>, <Button text='Create' color='blue' className={style['create-location']}/>]
+    const buttons = [<Button text='Cancel' color='grey'/>, <Button text='Create' color='blue' className={style['create-location']}/>]
 
     const [createLocation, setCreateLocation] = useState<boolean>(false)
 
