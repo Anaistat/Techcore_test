@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Anaistat/techcore_test/static/css/main.12b2e15c.css",
+    "main.js": "/Anaistat/techcore_test/static/js/main.e77050ff.js",
+    "static/media/profile2.png": "/Anaistat/techcore_test/static/media/profile2.25eb5c83bd178e9bcba8.png",
+    "static/media/profile1.png": "/Anaistat/techcore_test/static/media/profile1.463115f0219816b1bad0.png",
+    "static/media/profile3.png": "/Anaistat/techcore_test/static/media/profile3.aedb99355facb6887800.png",
+    "static/media/logo.png": "/Anaistat/techcore_test/static/media/logo.830433299986f6155fe0.png",
+    "index.html": "/Anaistat/techcore_test/index.html",
+    "main.12b2e15c.css.map": "/Anaistat/techcore_test/static/css/main.12b2e15c.css.map",
+    "main.e77050ff.js.map": "/Anaistat/techcore_test/static/js/main.e77050ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.12b2e15c.css",
+    "static/js/main.e77050ff.js"
+  ]
+}
