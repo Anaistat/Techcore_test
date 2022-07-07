@@ -18,9 +18,8 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
 
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
     const dispatch = useDispatch()
-    const vacation = useSelector<any>(state=>state.vacation)
     const deleteCard = () =>{
-        dispatch({type: 'DELETE_CARD', payload: country})
+        dispatch({type: 'DELETE_CARD', payload: {location: country}})
     }
     const buttons = [<Button text='Yes, Delete' color='red-outline' onClick={deleteCard}/>]
 

@@ -3,24 +3,22 @@ import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import style from './VacationManager.module.sass'
 import Button from "../../ui/Button/Button";
 import VacationCard from "./VacationCard/VacationCard";
-import profile1 from './VacationCard/images/profile1.png'
-import profile2 from './VacationCard/images/profile2.png'
-import profile3 from './VacationCard/images/profile3.png'
 import Modal from "../Modal/Modal";
 import CreateLocation from "./CreateLocation/CreateLocation";
 import {useDispatch, useSelector} from "react-redux";
+import users from "../../users";
 
 const VacationManagerPage = () => {
 
-    const users = [profile1, profile2, profile3, profile2, profile3, profile1, profile1, profile2, profile3, profile1, profile1, profile2, profile3]
     const [location, setLocation] = useState<string>('')
     const vacation:any = useSelector<any>(state=>state.vacation)
 
     const dispatch = useDispatch()
     const addNewLocation = () => {
-        dispatch({type: 'ADD_LOCATION', payload: [location, false, users]})
+        dispatch({type: 'ADD_LOCATION', payload: {location: location, isDefault: false, users: users}})
         setCreateLocation(false)
     }
+
 
     const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
     const [createLocation, setCreateLocation] = useState<boolean>(false)
@@ -36,9 +34,8 @@ const VacationManagerPage = () => {
                 </div>
             </div>
             <div className={style['vacation-manager__cards']}>
-                <VacationCard country='Belarus' users={users} defaultCard={true}/>
                 {
-                    vacation.map((e:any)=><VacationCard country={e[0]} users={e[2]} defaultCard={e[1]} key={e[0]}/>)
+                    vacation.map((e:any)=><VacationCard country={e.location} users={e.users} defaultCard={e.isDefault} key={e.location}/>)
                 }
             </div>
             {
