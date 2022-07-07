@@ -5,13 +5,15 @@ interface CheckBoxProp{
     label?: string
     name?: string
     boldFont?: boolean
+    value: string
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Checkbox:FC<CheckBoxProp> = ({label, name, boldFont = false}) => {
+const Checkbox:FC<CheckBoxProp> = ({label, name, boldFont = false, value, onChange}) => {
     return (
         <>
             <label htmlFor={name} className="label-checkbox">
-                <input id={name} type="checkbox" name={name} className="invisible-input"/>
+                <input id={name} type="checkbox" name={name} className="invisible-input" value={value} onChange={onChange}/>
                     <div className="checkbox">
                         <svg width="20px" height="20px" viewBox="0 0 20 20">
                             <path

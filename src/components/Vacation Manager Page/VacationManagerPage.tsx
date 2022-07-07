@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import style from './VacationManager.module.sass'
 import Button from "../../ui/Button/Button";
@@ -8,6 +8,7 @@ import profile2 from './VacationCard/images/profile2.png'
 import profile3 from './VacationCard/images/profile3.png'
 import Modal from "../Modal/Modal";
 import CreateLocation from "./CreateLocation/CreateLocation";
+import {useDispatch, useSelector} from "react-redux";
 
 const VacationManagerPage = () => {
 
@@ -15,7 +16,15 @@ const VacationManagerPage = () => {
     const users1 = [profile1, profile2, profile3, profile2, profile3]
     const users2 = [profile1, profile2, profile3, profile2, profile3, profile3, profile2]
 
-    const buttons = [<Button text='Cancel' color='grey'/>, <Button text='Create' color='blue' className={style['create-location']}/>]
+    const dispatch = useDispatch()
+    const vacation:any = useSelector<any>(state=>state.vacation)
+    const addNewLocation = () => {
+        dispatch({type: 'ADD_LOCATION', payload: ['Poland', 'false']})
+        console.log(vacation)
+    }
+
+
+    const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
 
     const [createLocation, setCreateLocation] = useState<boolean>(false)
 
