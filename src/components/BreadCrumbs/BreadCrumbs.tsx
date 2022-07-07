@@ -9,11 +9,11 @@ const BreadCrumbs = () => {
             <ul className={style['bread-crumbs']}>
                 <li className={style['bread-crumbs__pages']}>
                     <img src={settings} alt="settings" width='14' height='14' className={style['setting-icon']}/>
-                    <span>Settings</span>
+                    <a href='#' className={style['page-link']}>Settings</a>
                     <img src={arrow} alt="arrow" width='13' height='13' className={style['arrow-icon']}/>
                 </li>
                 <li className={style['bread-crumbs__pages']}>
-                    <span>Vacation Manager</span>
+                    <a href='#' className={style['page-link']}>Vacation Manager</a>
                 </li>
             </ul>
         </div>
