@@ -36,6 +36,7 @@ const VacationManagerPage = () => {
                 </div>
             </div>
             <div className={style['vacation-manager__cards']}>
+                <VacationCard country='Belarus' users={users} defaultCard={true}/>
                 {
                     vacation.map((e:any)=><VacationCard country={e[0]} users={e[2]} defaultCard={e[1]} key={e[0]}/>)
                 }
