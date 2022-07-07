@@ -21,7 +21,7 @@ details
   margin-right: 1rem
 
 details[open]
-  z-index: 50
+  z-index: 150
 
 
 summary
@@ -83,10 +83,10 @@ details[open] summary:after
   max-height: 200px
   overflow-y: auto
   list-style: none
-  z-index: 200
 
 .select-item
   margin: 0
+  z-index: 101
   transition: background-color 0.3s ease-out
 
   &:hover
@@ -125,11 +125,13 @@ input[type=radio]:after
   counter-reset: labels
 
 .select-label
-  padding: 10px 15px
+  padding: 10px 0 10px 15px
+  box-sizing: border-box
   width: 100%
   display: flex
   cursor: pointer
   justify-content: space-between
+  z-index: 101
 
 .select-label span
   --display: none
