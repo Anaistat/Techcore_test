@@ -2,10 +2,11 @@ import React, {FC, useEffect, useState} from 'react';
 import style from './More.module.sass'
 import edit from './images/edit.png'
 import defaultCard from './images/default.png'
-import deleteCard from './images/delete.png'
+import deleteCardImg from './images/delete.png'
 import Modal from "../../Modal/Modal";
 import warning from './images/warning.png'
 import Button from "../../../ui/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
 
 interface MoreProps{
     open: boolean
@@ -16,7 +17,12 @@ interface MoreProps{
 const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
 
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
-    const buttons = [<Button text='Yes, Delete' color='red-outline'/>]
+    const dispatch = useDispatch()
+    const vacation = useSelector<any>(state=>state.vacation)
+    const deleteCard = () =>{
+        dispatch({type: 'DELETE_CARD', payload: country})
+    }
+    const buttons = [<Button text='Yes, Delete' color='red-outline' onClick={deleteCard}/>]
 
     return (
         <div className={style.more} style={{
@@ -31,10 +37,8 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
                     <img src={defaultCard} alt="default" width='13' height='13'/>
                     <span className={style['actions-text']}>Set as Default</span>
                 </li>
-                <li className={style['actions__action']} onClick={()=>{
-                    setIsDeleteModal(true)
-                }}>
-                    <img src={deleteCard} alt="delete" width='13' height='13'/>
+                <li className={style['actions__action']} onClick={()=> setIsDeleteModal(true)}>
+                    <img src={deleteCardImg} alt="delete" width='13' height='13'/>
                     <span className={style['actions-text']}>Delete</span>
                 </li>
             </ul>

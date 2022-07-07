@@ -22,7 +22,7 @@ const Modal:FC<ModalProps> = ({children, buttons, title, setVisible}) => {
                 </div>
                 <div className={style['modal__buttons']}>
                     {
-                        buttons
+                        buttons.map((button, index)=><React.Fragment key={index}>{button}</React.Fragment>)
                     }
                 </div>
             </div>

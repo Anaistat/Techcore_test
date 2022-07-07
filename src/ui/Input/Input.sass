@@ -12,7 +12,7 @@
   font-size: 13px
   font-weight: var(--font-regular)
   color: var(--text-color-100)
-  padding: 10px 0
+  padding: 10px 0 10px 15px
   background: transparent
   transition: border-color 0.2s
 
@@ -30,11 +30,14 @@
 
 .form__label
   position: absolute
-  top: 0
+  top: -9px
+  left: 16px
   display: block
   transition: 0.2s
-  font-size: 13px
-  color: var(--text-color-grey2)
+  font-size: 11px
+  font-weight: var(--font-semi-bold)
+  color: var(--text-color-100)
+  background-color: #FFFFFF
 
 .form__field:focus
   ~ .form__label
@@ -48,8 +51,12 @@
     font-weight: var(--font-semi-bold)
     color: var(--text-color-100)
 
+  ~&::placeholder
+    color: transparent
+
 
 /* reset input */
 .form__field
   &:required,&:invalid
     box-shadow: none
+

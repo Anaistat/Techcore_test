@@ -1,23 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import style from './CreateLocation.module.sass'
 import Input from "../../../ui/Input/Input";
 import Checkbox from "../../../ui/Checkbox/Checkbox";
 import Select from "../../../ui/Select/Select";
 import Info from "./Info/Info";
 
+interface LocationProps{
+    setLocation: (location: string) => void
+}
 
-const CreateLocation = () => {
+const CreateLocation:FC<LocationProps> = ({setLocation}) => {
 
     const week:string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const month:string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const days:string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+    const daysValues:string[] = Array(31).fill(0).map((e, index)=>String(index + 1))
     const timezone: string[] = ['(GMT + 02:00) Vilnius', '(GMT + 03:00) Nairobi', '(GMT + 03:00) Minsk', '(GMT + 03:00) Qatar']
 
     const [locationName, setLocationName] = useState<string>('')
     const [users, setUsers] = useState<string>('')
-    const [expiryDate, setExpiryDate] = useState<string>('')
-    const [locationDefault, setLocationDefault] = useState<string>('')
+    const [expiryDate, setExpiryDate] = useState<boolean>(false)
+    const [locationDefault, setLocationDefault] = useState<boolean>(false)
+    const [days, setDays] = useState<string[]>([])
 
+    const dayCheckboxHandler = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        if(e.target.checked){
+            if(days.includes(e.target.value)) return
+            return setDays(prevState => [...prevState, e.target.value])
+        }
+        setDays(prevState => prevState.filter(elem=> elem !== e.target.value))
+    }
+
+    const isChecked = (day: string) =>{
+        return days.includes(day)
+    }
+
+    useEffect(()=>{
+        setLocation(locationName)
+    }, [locationName])
 
     return (
         <form action=''>
@@ -29,7 +48,9 @@ const CreateLocation = () => {
                     <h2 className={style['workweek__text']}>Workweek <span className={style['workweek__required']}>*</span></h2>
                     <ul className={style['workweek__days']}>
                         {
-                            week.map(day=><li className={style['workweek__days--item']}><Checkbox label={day} name={day}/></li>)
+                            week.map(day=><li className={style['workweek__days--item']} key={day}>
+                                            <Checkbox label={day} name={day} value={day} onChange={dayCheckboxHandler} checked={isChecked(day)}/>
+                                        </li>)
                         }
                     </ul>
                 </li>
@@ -47,11 +68,18 @@ const CreateLocation = () => {
                         <Select values={month} label='Fiscal Year Start' name='month'/>
                     </div>
                     <div className={style['fiscal-start__day']}>
-                        <Select values={days} label='' name='days'/>
+                        <Select values={daysValues} label='' name='days'/>
                     </div>
                 </li>
                 <li className={style['expiry-date']}>
-                    <Checkbox label={'No Brought Forward Expiry Date'} name='expiry-date' boldFont={true} value={expiryDate} onChange={e=>setExpiryDate(e.target.value)}/>
+                    <Checkbox
+                        label={'No Brought Forward Expiry Date'}
+                        name='expiry-date'
+                        boldFont={true}
+                        value='expiry-date'
+                        checked={expiryDate}
+                        onChange={e=>setExpiryDate(e.target.checked)}
+                    />
                     <Info text={`Each year, the user's rolled over leaves will expire on the date you set. 
                     The quotas for each leave type are configured through the Leave Types section for this 
                     location and each can be set individually to allow or not allow roll overs.`}/>
@@ -71,7 +99,14 @@ const CreateLocation = () => {
                     <Input type='text' placeholder='Add Users' value={users} onChange={e=>setUsers(e.target.value)}/>
                 </li>
                 <li className={style['default-location']}>
-                    <Checkbox label='Make This Location Default' boldFont={true} name='default-location' value={locationDefault} onChange={e=>setLocationDefault(e.target.value)}/>
+                    <Checkbox
+                        label='Make This Location Default'
+                        boldFont={true}
+                        name='default-location'
+                        value='default-location'
+                        checked={locationDefault}
+                        onChange={e=>setLocationDefault(e.target.checked)}
+                    />
                     <Info text={`Each year, the user's rolled over leaves will expire on the date you set. 
                     The quotas for each leave type are configured through the Leave Types section for this 
                     location and each can be set individually to allow or not allow roll overs.`}/>

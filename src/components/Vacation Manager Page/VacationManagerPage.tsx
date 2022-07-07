@@ -13,19 +13,16 @@ import {useDispatch, useSelector} from "react-redux";
 const VacationManagerPage = () => {
 
     const users = [profile1, profile2, profile3, profile2, profile3, profile1, profile1, profile2, profile3, profile1, profile1, profile2, profile3]
-    const users1 = [profile1, profile2, profile3, profile2, profile3]
-    const users2 = [profile1, profile2, profile3, profile2, profile3, profile3, profile2]
+    const [location, setLocation] = useState<string>('')
+    const vacation:any = useSelector<any>(state=>state.vacation)
 
     const dispatch = useDispatch()
-    const vacation:any = useSelector<any>(state=>state.vacation)
     const addNewLocation = () => {
-        dispatch({type: 'ADD_LOCATION', payload: ['Poland', 'false']})
-        console.log(vacation)
+        dispatch({type: 'ADD_LOCATION', payload: [location, false, users]})
+        setCreateLocation(false)
     }
 
-
     const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
-
     const [createLocation, setCreateLocation] = useState<boolean>(false)
 
     return (
@@ -39,15 +36,15 @@ const VacationManagerPage = () => {
                 </div>
             </div>
             <div className={style['vacation-manager__cards']}>
-                <VacationCard country='Australia' users={users} defaultCard={true}/>
-                <VacationCard country='Belarus' users={users1} defaultCard={false}/>
-                <VacationCard country='USA' users={users2} defaultCard={false}/>
+                {
+                    vacation.map((e:any)=><VacationCard country={e[0]} users={e[2]} defaultCard={e[1]} key={e[0]}/>)
+                }
             </div>
             {
                 createLocation
                 ?
                     <Modal title='Create Location' buttons={buttons} setVisible={setCreateLocation}>
-                        <CreateLocation/>
+                        <CreateLocation setLocation={setLocation}/>
                     </Modal>
                 :
                     <></>
