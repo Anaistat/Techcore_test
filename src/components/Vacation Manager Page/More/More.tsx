@@ -21,6 +21,9 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
     const deleteCard = () =>{
         dispatch({type: 'DELETE_CARD', payload: {location: country}})
     }
+    const makeDefault = () =>{
+        dispatch({type: 'MAKE_DEFAULT', payload: {location: country}})
+    }
     const buttons = [<Button text='Yes, Delete' color='red-outline' onClick={deleteCard}/>]
 
     return (
@@ -32,7 +35,7 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
                     <img src={edit} alt="edit" width='13' height='13'/>
                     <span className={style['actions-text']}>Edit</span>
                 </li>
-                <li className={[style['actions__action'], style['actions__action--middle']].join(' ')}>
+                <li className={[style['actions__action'], style['actions__action--middle']].join(' ')} onClick={makeDefault}>
                     <img src={defaultCard} alt="default" width='13' height='13'/>
                     <span className={style['actions-text']}>Set as Default</span>
                 </li>
