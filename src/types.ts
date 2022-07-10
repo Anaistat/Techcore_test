@@ -3,7 +3,3 @@ export type Vacation = {
     isDefault: boolean
     users: string[]
 }
-
-export type Breadcrumbs = {
-    page: string
-}
