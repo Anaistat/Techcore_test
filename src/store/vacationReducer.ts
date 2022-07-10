@@ -28,13 +28,7 @@ export const vacationReducer = (state:Vacation[] = defaultCards, action:any) =>{
 
         case 'MAKE_DEFAULT':
             [...state].map(e=>{
-                if(e.location === action.payload.location){
-                    e.isDefault = true
-                    console.log(e)
-                }
-                else{
-                    e.isDefault = false
-                }
+                e.isDefault = e.location === action.payload.location;
             })
             return [...state]
 

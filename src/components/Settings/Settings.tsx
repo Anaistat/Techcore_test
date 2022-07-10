@@ -34,12 +34,12 @@ const Settings = () => {
             <ul className={style['settings__subitems']} style={{
                 display: showSubmenu?'block':'none'
             }}>
-                <li>
+                <li className={[style['cell'], style['cell--types']].join(' ')}>
                     <span className={style['text']}>Leave Types</span>
                 </li>
-                <li className={style['cell--active']}>
+                <li className={[style['cell'], style['cell--location']].join(' ')}>
                    <Link to='/settings/vacation' className={style['location-link']}>
-                       <span className={[style['text'], style['text--active']].join(' ')}>Locations</span>
+                       <span className={style['text']}>Locations</span>
                    </Link>
                 </li>
             </ul>

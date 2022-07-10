@@ -45,16 +45,35 @@
       color: var(--main-color-100)
 
   .cell
-    &--active
-      position: absolute
-      box-sizing: border-box
-      padding: 4px 0 0 56px
-      width: 100%
-      height: 32px
-      background-color: var(--main-color-10)
-      left: 0
+    cursor: pointer
+    position: absolute
+    box-sizing: border-box
+    padding: 4px 0 0 56px
+    width: 100%
+    height: 32px
+    left: 0
+    transition: background-color 0.3s ease-out
+
+    &--types
+      top: 130px
+
+    &--location
       top: 166px
-      cursor: pointer
+
+    &:hover
+      background-color: var(--main-color-10)
+      transition: background-color 0.3s ease-out
+
+    //&--active
+    //  position: absolute
+    //  box-sizing: border-box
+    //  padding: 4px 0 0 56px
+    //  width: 100%
+    //  height: 32px
+    //  background-color: var(--main-color-10)
+    //  left: 0
+    //  top: 166px
+    //  cursor: pointer
 
 
   .arrow

@@ -23,6 +23,7 @@ const More:FC<MoreProps> = ({open, country, setIsOpen}) => {
     }
     const makeDefault = () =>{
         dispatch({type: 'MAKE_DEFAULT', payload: {location: country}})
+        setIsOpen(false)
     }
     const buttons = [<Button text='Yes, Delete' color='red-outline' onClick={deleteCard}/>]
 
