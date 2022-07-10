@@ -38,7 +38,7 @@ const Settings = () => {
                     <span className={style['text']}>Leave Types</span>
                 </li>
                 <li className={style['cell--active']}>
-                   <Link to='/settings/vacation' className={style['location-link']}>
+                   <Link to='/settings/vacation'>
                        <span className={[style['text'], style['text--active']].join(' ')}>Locations</span>
                    </Link>
                 </li>
