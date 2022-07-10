@@ -7,7 +7,6 @@ import Modal from "../Modal/Modal";
 import CreateLocation from "./CreateLocation/CreateLocation";
 import {useDispatch, useSelector} from "react-redux";
 import users from "../../users";
-import {Vacation} from "../../types";
 
 const VacationManagerPage = () => {
 
@@ -19,10 +18,6 @@ const VacationManagerPage = () => {
         dispatch({type: 'ADD_LOCATION', payload: {location: location, isDefault: false, users: users}})
         setCreateLocation(false)
     }
-
-    useEffect(()=>{
-        console.log(vacation.sort((e:Vacation)=>e.isDefault?1:-1))
-    }, [vacation])
 
 
     const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
