@@ -4,6 +4,8 @@ import Input from "../../../ui/Input/Input";
 import Checkbox from "../../../ui/Checkbox/Checkbox";
 import Select from "../../../ui/Select/Select";
 import Info from "./Info/Info";
+import warning from './../More/images/warning.png'
+import InputTags from "../../../ui/InputTags/InputTags";
 
 interface LocationProps{
     setLocation: (location: string) => void
@@ -96,7 +98,12 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
                     also be affected according to this setting.`}/>
                 </li>
                 <li className={style['add-users']}>
-                    <Input type='text' placeholder='Add Users' value={users} onChange={e=>setUsers(e.target.value)}/>
+                    {/*<Input type='text' placeholder='Add Users' value={users} onChange={e=>setUsers(e.target.value)}/>*/}
+                    <InputTags/>
+                    <div className={style['add-users__warning']}>
+                        <img src={warning} alt="warning" width='16' height='16'/>
+                        <p className={style['add-users__warning--text']}>Adding or removing a user might impact the user's configuration and leave information (e.g. the initial brought forward days).</p>
+                    </div>
                 </li>
                 <li className={style['default-location']}>
                     <Checkbox

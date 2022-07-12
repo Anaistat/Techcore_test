@@ -1,6 +1,5 @@
 .more
   box-sizing: border-box
-  padding: 10px 16px
   border-radius: 6px
   box-shadow: var(--main-shadow)
   border: 0.7px solid var(--light-grey)
@@ -16,9 +15,13 @@
 
   &__action
     cursor: pointer
+    transition: background-color 0.3s ease-out
+    padding: 6px 16px
 
-    &--middle
-      margin: 8px 0
+    &:hover
+      background-color: var(--main-color-10)
+      transition: background-color 0.3s ease-out
+
 
 .actions-text
   color: var(--text-color-80)

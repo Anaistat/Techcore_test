@@ -20,11 +20,6 @@ const VacationManagerPage = () => {
         setCreateLocation(false)
     }
 
-    useEffect(()=>{
-        console.log(vacation.sort((e:Vacation)=>e.isDefault?1:-1))
-    }, [vacation])
-
-
     const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
     const [createLocation, setCreateLocation] = useState<boolean>(false)
 
@@ -40,7 +35,7 @@ const VacationManagerPage = () => {
             </div>
             <div className={style['vacation-manager__cards']}>
                 {
-                    vacation.map((e:any)=><VacationCard country={e.location} users={e.users} defaultCard={e.isDefault} key={e.location}/>)
+                    vacation.sort((e:Vacation)=>e.isDefault?-1:1).map((e:any)=><VacationCard country={e.location} users={e.users} defaultCard={e.isDefault} key={e.location}/>)
                 }
             </div>
             {
