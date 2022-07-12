@@ -11,7 +11,13 @@ interface InputProps{
 const Input:FC<InputProps> = ({type, placeholder, value, onChange}) => {
     return (
         <div className="form__group field">
-            <input type={type} className="form__field" placeholder={placeholder} value={value} onChange={onChange} name="name" required/>
+            <input
+                type={type}
+                className="form__field"
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                name="name"/>
             <label htmlFor="name" className="form__label">{placeholder}</label>
         </div>
     );

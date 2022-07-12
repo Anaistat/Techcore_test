@@ -1,0 +1,93 @@
+.input-container
+  position: relative
+
+.search-input
+  border: none
+
+  &::placeholder
+    color: transparent
+
+  &--not-empty ~ .placeholder,
+  &:not(:placeholder-shown) ~ .placeholder,
+  &:focus ~ .placeholder
+    font-size: 11px
+    font-weight: var(--font-semi-bold)
+    color: var(--text-color-100)
+    transform: translate3d(0%, -110%, 0)
+    transition: transform 0.2s ease-out
+    background-color: #FFFFFF
+
+  &:focus
+    outline: none
+
+
+.placeholder
+  left: 16px
+  position: absolute
+  transition: transform 0.2s ease-out
+  font-size: 13px
+  font-weight: var(--font-regular)
+  color: var(--text-color-grey2)
+  cursor: text
+
+
+.label
+  display: block
+  font-family: inherit
+  width: 100%
+  border: 0
+  outline: 0.7px solid var(--text-color-grey2)
+  border-radius: 4px
+  font-size: 13px
+  font-weight: var(--font-regular)
+  color: var(--text-color-100)
+  padding: 10px 0 10px 15px
+  background: transparent
+
+
+  &:focus-within
+    outline: 0.7px solid #8A3EEF
+    box-shadow: 0 0 15px rgba(138, 62, 239, 0.05)
+
+
+.select
+  box-sizing: border-box
+  position: relative
+
+  &__list
+    box-shadow: var(--main-shadow)
+    border: 0.7px solid var(--light-grey-10)
+    border-radius: 6px
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    list-style: none
+    background-color: #FFFFFF
+    top: 15px
+    left: 0
+    right: 0
+    z-index: 100
+    position: absolute
+
+.users
+  padding: 10px
+  cursor: pointer
+  transition: background-color 0.3s ease-out
+
+  &:hover
+    background-color: #F4E7FD
+    transition: background-color 0.3s ease-out
+
+
+.tag
+  font-size: 13px
+  font-weight: var(--font-medium)
+  color: var(--main-color-100)
+  background-color: var(--main-color-10)
+  border-radius: 10px
+  padding: 4px 8px
+  margin: 0 6px
+
+.remove
+  cursor: pointer
+  margin-left: 6px

@@ -1,65 +1,64 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './InputTags.module.sass'
-import Chip from '@mui/material/Chip';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 
 const InputTags = () => {
 
-    const top100Films = [
-        { title: 'The Shawshank Redemption', year: 1994 },
-        { title: 'The Godfather', year: 1972 },
-        { title: 'The Godfather: Part II', year: 1974 },
-        { title: 'The Dark Knight', year: 2008 },
-        { title: '12 Angry Men', year: 1957 },
-        { title: "Schindler's List", year: 1993 },
-        { title: 'Pulp Fiction', year: 1994 },
-        {
-            title: 'The Lord of the Rings: The Return of the King',
-            year: 2003,
-        },
-        { title: 'The Good, the Bad and the Ugly', year: 1966 },
-        { title: 'Fight Club', year: 1999 },
-        {
-            title: 'The Lord of the Rings: The Fellowship of the Ring',
-            year: 2001,
-        },
-        {
-            title: 'Star Wars: Episode V - The Empire Strikes Back',
-            year: 1980,
-        },
-        { title: 'Forrest Gump', year: 1994 },
-        { title: 'Inception', year: 2010 },
-        {
-            title: 'The Lord of the Rings: The Two Towers',
-            year: 2002,
-        },
-        { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-        { title: 'Goodfellas', year: 1990 },
-        { title: 'The Matrix', year: 1999 },
-        { title: 'Seven Samurai', year: 1954 },
-    ];
+    const users = ['Julia Senko', 'Alexander', 'Jessica Monroe', 'Kamila', 'Menon Kritika', 'Stanislay', 'Tanya Zvereva']
+    const [isFocused, setIsFocused] = useState<boolean>(false)
+    const [searchUser, setSearchUser] = useState<string>('')
+    const [enteredUsers, setEnteredUsers] = useState<string[]>([])
+
+    const addUser = (user:string) =>{
+        setEnteredUsers(prev=>[...prev, user])
+    }
+
+    const removeUser = (user:string) =>{
+        setEnteredUsers(prev=>prev.filter(e=>e !== user))
+    }
 
     return (
-        <Stack spacing={3} sx={{ width: 500 }}>
-            <Autocomplete
-                multiple
-                id="tags-outlined"
-                options={top100Films}
-                getOptionLabel={(option) => option.title}
-                defaultValue={[top100Films[13]]}
-                filterSelectedOptions
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="filterSelectedOptions"
-                        placeholder="Favorites"
-                    />
-                )}
-            />
+        <div className={style['input-container']}>
+            <label className={style.label} data-name='Users'>
+                {
+                    enteredUsers.map(e=>
+                        <span className={style.tag}>{e}
+                            <span className={style.remove} onClick={()=>removeUser(e)}>
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.78228 5.00019L9.10497 1.6773C9.32058 1.46168 9.32058 1.11184 9.10497 0.895413C8.88935 0.678989 8.53951 0.679799 8.32309 0.895413L5.00019 4.21811L1.6773 0.895413C1.46168 0.679799 1.11184 0.679799 0.895413 0.895413C0.678989 1.11103 0.679799 1.46087 0.895413 1.6773L4.21811 5.00019L0.895413 8.32309C0.679799 8.5387 0.679799 8.88855 0.895413 9.10497C1.00312 9.21288 1.14504 9.26673 1.28595 9.26673C1.42767 9.26673 1.56878 9.21288 1.67649 9.10497L5.00019 5.78228L8.32309 9.10497C8.43079 9.21288 8.57271 9.26673 8.71362 9.26673C8.85453 9.26673 8.99645 9.21288 9.10416 9.10497C9.31977 8.88935 9.31977 8.53951 9.10416 8.32309L5.78228 5.00019Z" fill="white"/>
+                                    <path d="M5.78228 5.00019L9.10497 1.6773C9.32058 1.46168 9.32058 1.11184 9.10497 0.895413C8.88935 0.678989 8.53951 0.679799 8.32309 0.895413L5.00019 4.21811L1.6773 0.895413C1.46168 0.679799 1.11184 0.679799 0.895413 0.895413C0.678989 1.11103 0.679799 1.46087 0.895413 1.6773L4.21811 5.00019L0.895413 8.32309C0.679799 8.5387 0.679799 8.88855 0.895413 9.10497C1.00312 9.21288 1.14504 9.26673 1.28595 9.26673C1.42767 9.26673 1.56878 9.21288 1.67649 9.10497L5.00019 5.78228L8.32309 9.10497C8.43079 9.21288 8.57271 9.26673 8.71362 9.26673C8.85453 9.26673 8.99645 9.21288 9.10416 9.10497C9.31977 8.88935 9.31977 8.53951 9.10416 8.32309L5.78228 5.00019Z" fill="#00A0EC" fill-opacity="0.7"/>
+                                </svg>
 
-        </Stack>
+                            </span>
+                        </span>)
+                }
+                <input
+                    className={[style['search-input'], style[enteredUsers.length?'search-input--not-empty':'']].join(' ')}
+                    type='text'
+                    placeholder='Add Users'
+                    name="add-users"
+                    onFocus={()=>setIsFocused(true)}
+                    value={searchUser}
+                    onChange={e=>setSearchUser(e.target.value)}
+                />
+                <span className={style['placeholder']}>Users</span>
+            </label>
+            <div className={style.select} style={{
+                display: isFocused?'block':'none'
+            }}>
+                <ul className={style['select__list']}>
+                    {
+                        users.map((user, index)=>
+                            <li
+                                className={style.users}
+                                key={`${index}-${user}`}
+                                onClick={()=>addUser(user)}
+                            >
+                                {user}
+                            </li>)
+                    }
+                </ul>
+            </div>
+        </div>
     );
 };
 
