@@ -19,7 +19,6 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
     const timezone: string[] = ['(GMT + 02:00) Vilnius', '(GMT + 03:00) Nairobi', '(GMT + 03:00) Minsk', '(GMT + 03:00) Qatar']
 
     const [locationName, setLocationName] = useState<string>('')
-    const [users, setUsers] = useState<string>('')
     const [expiryDate, setExpiryDate] = useState<boolean>(false)
     const [locationDefault, setLocationDefault] = useState<boolean>(false)
     const [days, setDays] = useState<string[]>([])
@@ -44,20 +43,36 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
         <form action=''>
             <ul className={style['form-container']}>
                 <li className={style.name}>
-                    <Input type='text' placeholder='Location Name' value={locationName} onChange={e=>setLocationName(e.target.value)}/>
+                    <Input
+                        type='text'
+                        placeholder='Location Name'
+                        value={locationName}
+                        onChange={e=>setLocationName(e.target.value)}/>
                 </li>
                 <li className={style.workweek}>
-                    <h2 className={style['workweek__text']}>Workweek <span className={style['workweek__required']}>*</span></h2>
+                    <h2 className={style['workweek__text']}>Workweek
+                        <span className={style['workweek__required']}>*</span>
+                    </h2>
                     <ul className={style['workweek__days']}>
                         {
                             week.map(day=><li className={style['workweek__days--item']} key={day}>
-                                            <Checkbox label={day} name={day} value={day} onChange={dayCheckboxHandler} checked={isChecked(day)}/>
+                                            <Checkbox
+                                                label={day}
+                                                name={day}
+                                                value={day}
+                                                onChange={dayCheckboxHandler}
+                                                checked={isChecked(day)}/>
                                         </li>)
                         }
                     </ul>
                 </li>
                 <li className={style['leave-quota']}>
-                    <Select values={['Accounting year', 'User Employment Date']} label='Leave Quota Reset Based on' name='quota' className={style['leave-quota__select']}/>
+                    <Select
+                        values={['Accounting year', 'User Employment Date']}
+                        label='Leave Quota Reset Based on'
+                        name='quota'
+                        className={style['leave-quota__select']}
+                    />
                     <Info text={`This setting will determine if your 
                     leave balance will be reset based on the accounting 
                     year (company's fiscal year) or based on the employee's 
@@ -90,7 +105,11 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
                     <Select values={week.slice(0,2)} label='Week Starts on' name='week-start'/>
                 </li>
                 <li className={style['timezone']}>
-                    <Select values={timezone} label='Time Zone*' name='timezone' className={style['timezone__select']}/>
+                    <Select
+                        values={timezone}
+                        label='Time Zone*'
+                        name='timezone'
+                        className={style['timezone__select']}/>
                     <Info text={`This setting will determine if your 
                     leave balance will be reset based on the accounting 
                     year (company's fiscal year) or based on the employee's 
@@ -98,7 +117,6 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
                     also be affected according to this setting.`}/>
                 </li>
                 <li className={style['add-users']}>
-                    {/*<Input type='text' placeholder='Add Users' value={users} onChange={e=>setUsers(e.target.value)}/>*/}
                     <InputTags/>
                     <div className={style['add-users__warning']}>
                         <img src={warning} alt="warning" width='16' height='16'/>

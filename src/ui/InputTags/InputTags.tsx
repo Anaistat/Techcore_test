@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import style from './InputTags.module.sass'
 
 const InputTags = () => {
 
-    const users = ['Julia Senko', 'Alexander', 'Jessica Monroe', 'Kamila', 'Menon Kritika', 'Stanislay', 'Tanya Zvereva']
+    const users = ['Julia Senko', 'Alexander', 'Jessica Monroe', 'Kamila', 'Menon Kritika', 'Stanislay', 'Tanya Zvereva', 'Anastasiya', 'Igor']
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const [searchUser, setSearchUser] = useState<string>('')
     const [enteredUsers, setEnteredUsers] = useState<string[]>([])
@@ -14,6 +14,15 @@ const InputTags = () => {
 
     const removeUser = (user:string) =>{
         setEnteredUsers(prev=>prev.filter(e=>e !== user))
+    }
+
+    const keyHandler = (e: React.KeyboardEvent<HTMLInputElement>) =>{
+        if(e.key === 'Enter'){
+            addUser(users.filter(user=>user.toLowerCase().includes(searchUser.toLowerCase()) && !(enteredUsers.includes(user)))[0])
+        }
+        if(e.key === 'Backspace' && searchUser === ''){
+            removeUser(enteredUsers[enteredUsers.length - 1])
+        }
     }
 
     return (
@@ -39,6 +48,7 @@ const InputTags = () => {
                     onFocus={()=>setIsFocused(true)}
                     value={searchUser}
                     onChange={e=>setSearchUser(e.target.value)}
+                    onKeyDown={keyHandler}
                 />
                 <span className={style['placeholder']}>Users</span>
             </label>
@@ -47,7 +57,7 @@ const InputTags = () => {
             }}>
                 <ul className={style['select__list']}>
                     {
-                        users.map((user, index)=>
+                        users.filter(e=>(e.toLowerCase().includes(searchUser.toLowerCase())) && !(enteredUsers.includes(e))).map((user, index)=>
                             <li
                                 className={style.users}
                                 key={`${index}-${user}`}
