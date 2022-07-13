@@ -1,41 +1,50 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import style from './InputTags.module.sass'
-import {useDispatch} from "react-redux";
 
-const InputTags:FC = () => {
+interface InputTagsProps{
+    options: string[]
+    enteredOptions: string[]
+    setEnteredOptions: (newEnteredOptions: string[]) => void
+    placeholder?: string
+    name?: string
+    label?: string
+}
 
-    const users = ['Julia Senko', 'Alexander', 'Jessica Monroe', 'Kamila', 'Menon Kritika', 'Stanislay', 'Tanya Zvereva', 'Anastasiya', 'Igor']
+const InputTags:FC<InputTagsProps> = ({
+    options,
+    enteredOptions,
+    setEnteredOptions,
+    placeholder,
+    name,
+    label
+}) => {
+
     const [isFocused, setIsFocused] = useState<boolean>(false)
-    const [searchUser, setSearchUser] = useState<string>('')
-    const [enteredUsers, setEnteredUsers] = useState<string[]>([])
-    const dispatch = useDispatch()
+    const [searchOption, setSearchOption] = useState<string>('')
+    const filteredOptions = options.filter(e=>(e.toLowerCase().includes(searchOption.toLowerCase())) && !(enteredOptions.includes(e)))
 
     const addUser = (user:string) =>{
-        setEnteredUsers(prev=>[...prev, user])
+        setEnteredOptions([...enteredOptions, user])
     }
 
     const removeUser = (user:string) =>{
-        setEnteredUsers(prev=>prev.filter(e=>e !== user))
+        setEnteredOptions(enteredOptions.filter(e=>e !== user))
     }
 
     const keyHandler = (e: React.KeyboardEvent<HTMLInputElement>) =>{
         if(e.key === 'Enter'){
-            addUser(users.filter(user=>user.toLowerCase().includes(searchUser.toLowerCase()) && !(enteredUsers.includes(user)))[0])
+            addUser(filteredOptions[0])
         }
-        if(e.key === 'Backspace' && searchUser === ''){
-            removeUser(enteredUsers[enteredUsers.length - 1])
+        if(e.key === 'Backspace' && searchOption === ''){
+            removeUser(enteredOptions[enteredOptions.length - 1])
         }
     }
 
-    useEffect(()=>{
-        dispatch({type: 'ADD_USERS', payload: enteredUsers})
-    }, [enteredUsers])
-
     return (
         <div className={style['input-container']}>
-            <label className={style.label} data-name='Users'>
+            <label className={style.label} data-name={label}>
                 {
-                    enteredUsers.map(e=>
+                    enteredOptions.map(e=>
                         <span className={style.tag}>{e}
                             <span className={style.remove} onClick={()=>removeUser(e)}>
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,13 +55,13 @@ const InputTags:FC = () => {
                         </span>)
                 }
                 <input
-                    className={[style['search-input'], style[enteredUsers.length?'search-input--not-empty':'']].join(' ')}
+                    className={[style['search-input'], style[enteredOptions.length?'search-input--not-empty':'']].join(' ')}
                     type='text'
-                    placeholder='Add Users'
-                    name="add-users"
+                    placeholder={placeholder}
+                    name={name}
                     onFocus={()=>setIsFocused(true)}
-                    value={searchUser}
-                    onChange={e=>setSearchUser(e.target.value)}
+                    value={searchOption}
+                    onChange={e=>setSearchOption(e.target.value)}
                     onKeyDown={keyHandler}
                 />
                 <span className={style['placeholder']}>Users</span>
@@ -62,10 +71,10 @@ const InputTags:FC = () => {
             }}>
                 <ul className={style['select__list']}>
                     {
-                        users.filter(e=>(e.toLowerCase().includes(searchUser.toLowerCase())) && !(enteredUsers.includes(e))).map((user, index)=>
+                        filteredOptions.map(user=>
                             <li
                                 className={style.users}
-                                key={`${index}-${user}`}
+                                key={user}
                                 onClick={()=>addUser(user)}
                             >
                                 {user}

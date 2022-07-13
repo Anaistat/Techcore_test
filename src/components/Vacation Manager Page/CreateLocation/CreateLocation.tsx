@@ -17,11 +17,19 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
     const month:string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const daysValues:string[] = Array(31).fill(0).map((e, index)=>String(index + 1))
     const timezone: string[] = ['(GMT + 02:00) Vilnius', '(GMT + 03:00) Nairobi', '(GMT + 03:00) Minsk', '(GMT + 03:00) Qatar']
+    const users = ['Julia Senko', 'Alexander', 'Bigus', 'Jessica Monroe', 'Kamila', 'Menon Kritika', 'Dan Brown', 'Mister X', 'Biba i Boba', 'Amogus', 'Bimbim Bombom']
 
     const [locationName, setLocationName] = useState<string>('')
     const [expiryDate, setExpiryDate] = useState<boolean>(false)
     const [locationDefault, setLocationDefault] = useState<boolean>(false)
     const [days, setDays] = useState<string[]>([])
+    const [enteredUsers, setEnteredUsers] = useState<string[]>([])
+
+
+    useEffect(()=>{
+        console.log(enteredUsers)
+    }, [enteredUsers])
+
 
     const dayCheckboxHandler = (e: React.ChangeEvent<HTMLInputElement>) =>{
         if(e.target.checked){
@@ -117,7 +125,14 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
                     also be affected according to this setting.`}/>
                 </li>
                 <li className={style['add-users']}>
-                    <InputTags/>
+                    <InputTags
+                        options={users}
+                        enteredOptions={enteredUsers}
+                        setEnteredOptions={setEnteredUsers}
+                        placeholder='Add Users'
+                        label='Users'
+                        name='Users'
+                    />
                     <div className={style['add-users__warning']}>
                         <img src={warning} alt="warning" width='16' height='16'/>
                         <p className={style['add-users__warning--text']}>Adding or removing a user might impact the user's configuration and leave information (e.g. the initial brought forward days).</p>
