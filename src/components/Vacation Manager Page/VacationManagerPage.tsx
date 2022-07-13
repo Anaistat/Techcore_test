@@ -13,15 +13,17 @@ const VacationManagerPage = () => {
 
     const [location, setLocation] = useState<string>('')
     const vacation:any = useSelector<any>(state=>state.vacation)
-
+    const addedUsers:any = useSelector<any>(state=> state.addUsers)
+    const [createLocation, setCreateLocation] = useState<boolean>(false)
     const dispatch = useDispatch()
+
     const addNewLocation = () => {
+        console.log(addedUsers)
         dispatch({type: 'ADD_LOCATION', payload: {location: location, isDefault: false, users: users}})
         setCreateLocation(false)
     }
 
     const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
-    const [createLocation, setCreateLocation] = useState<boolean>(false)
 
     return (
         <div className={style['vacation-manager']}>
