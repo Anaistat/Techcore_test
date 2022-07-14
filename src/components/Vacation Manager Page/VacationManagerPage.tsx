@@ -18,12 +18,15 @@ const VacationManagerPage = () => {
     const dispatch = useDispatch()
 
     const addNewLocation = () => {
-        console.log(addedUsers)
-        dispatch({type: 'ADD_LOCATION', payload: {location: location, isDefault: false, users: users}})
+        dispatch({type: 'ADD_LOCATION', payload: {location: location, isDefault: false, users: users.splice(0, addedUsers.length)}})
         setCreateLocation(false)
     }
 
-    const buttons = [<Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>, <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>]
+    const buttons = [
+        <Button text='Cancel' color='grey' onClick={()=>setCreateLocation(false)}/>,
+        <Button text='Create' color='blue' className={style['create-location']} onClick={addNewLocation}/>
+    ]
+
 
     return (
         <div className={style['vacation-manager']}>

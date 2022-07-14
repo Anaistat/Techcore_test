@@ -6,6 +6,7 @@ import Select from "../../../ui/Select/Select";
 import Info from "./Info/Info";
 import warning from './../More/images/warning.png'
 import InputTags from "../../../ui/InputTags/InputTags";
+import {useDispatch} from "react-redux";
 
 interface LocationProps{
     setLocation: (location: string) => void
@@ -24,10 +25,11 @@ const CreateLocation:FC<LocationProps> = ({setLocation}) => {
     const [locationDefault, setLocationDefault] = useState<boolean>(false)
     const [days, setDays] = useState<string[]>([])
     const [enteredUsers, setEnteredUsers] = useState<string[]>([])
+    const dispatch = useDispatch()
 
 
     useEffect(()=>{
-        console.log(enteredUsers)
+        dispatch({type: 'ADD_USERS', payload: enteredUsers})
     }, [enteredUsers])
 
 
